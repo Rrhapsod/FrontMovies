@@ -22,18 +22,26 @@ export function SignUp() {
 
     fetch(`${api.baseURL}/users`, {
       method: "POST",
-      headers: { "Content-Type": "application/json; charset=UTF-8" },
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ name, email, password }),
     })
-      .then((response) => response.json())
-      .then(() => {
-        alert("Usuário cadastrado com sucesso!");
+      .then((response) => {
+        if (response.ok) {
+          return alert("Usuário criado com sucesso!");
+        }
+        return response.text().then((text) => {
+          throw new Error(text);
+        });
       })
       .catch((error) => {
-        if (error.response) {
-          alert(error.response.data.message);
+        if (error) {
+          console.log(error.message);
+          alert(error.message);
         } else {
-          alert("Não foi possível cadastrar...");
+          alert("Um erro ocorreu!");
         }
       });
   }
