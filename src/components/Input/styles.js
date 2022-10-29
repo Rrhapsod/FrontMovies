@@ -20,6 +20,10 @@ export const Container = styled.div`
     &:placeholder {
       color: ${({ theme }) => theme.COLORS.GRAY_TEXT};
     }
+
+    &:focus {
+      outline: ${({ theme }) => theme.COLORS.WHITE} solid 1px;
+    }
   }
 
   > svg {

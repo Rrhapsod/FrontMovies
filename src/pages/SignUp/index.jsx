@@ -36,10 +36,10 @@ export function SignUp() {
           throw new Error(text);
         });
       })
-      .catch((error) => {
-        if (error) {
-          console.log(error.message);
-          alert(error.message);
+      .catch((e) => {
+        if (e) {
+          const errorObject = JSON.parse(e.message)
+          alert(errorObject.message);
         } else {
           alert("Um erro ocorreu!");
         }
