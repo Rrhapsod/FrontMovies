@@ -5,22 +5,22 @@ import { FiUser, FiMail, FiLock, FiArrowLeft } from "react-icons/fi";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-
-import { api } from "../../services/api.js";
 
 export function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   function handleSignUp() {
     if (!name || !email || !password) {
       return alert("Preencha todos os campos!");
     }
 
-    fetch(`${api.baseURL}/users`, {
+    fetch(`http://localhost:3333/users`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -30,7 +30,8 @@ export function SignUp() {
     })
       .then((response) => {
         if (response.ok) {
-          return alert("Usuário criado com sucesso!");
+          alert("Usuário criado com sucesso!");
+          return navigate("/");
         }
         return response.text().then((text) => {
           throw new Error(text);
@@ -38,7 +39,7 @@ export function SignUp() {
       })
       .catch((e) => {
         if (e) {
-          const errorObject = JSON.parse(e.message)
+          const errorObject = JSON.parse(e.message);
           alert(errorObject.message);
         } else {
           alert("Um erro ocorreu!");

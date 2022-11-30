@@ -5,6 +5,7 @@ export const Container = styled.div`
   padding: 3.2rem 3.2rem;
   border-radius: 16px;
   width: 100%;
+  cursor: pointer;
 
   > p {
     margin: 1.5rem 0;

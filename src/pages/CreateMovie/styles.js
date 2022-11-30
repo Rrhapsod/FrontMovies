@@ -43,7 +43,7 @@ export const Form = styled.form`
     display: flex;
     gap: 4rem;
 
-    button:nth-child(1) {
+    a:nth-child(1) {
       width: 100%;
       background-color: ${({ theme }) => theme.COLORS.BACKGROUND_DARKER};
       color: ${({ theme }) => theme.COLORS.PINK};
@@ -53,9 +53,12 @@ export const Form = styled.form`
       border-radius: 10px;
       font-weight: 500;
       font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    button:nth-child(2) {
+    a:nth-child(2) {
       width: 100%;
       background-color: ${({ theme }) => theme.COLORS.PINK};
       color: ${({ theme }) => theme.COLORS.BACKGROUND_DARKER};
@@ -65,6 +68,9 @@ export const Form = styled.form`
       border-radius: 10px;
       font-weight: 500;
       font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 `;
@@ -89,6 +95,8 @@ export const TextArea = styled.textarea`
 `;
 
 export const TagArea = styled.div`
+  flex: 1;
+  flex-wrap: wrap;
   margin-top: 2.4rem;
   display: flex;
   gap: 2.4rem;

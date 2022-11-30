@@ -21,7 +21,7 @@ export const Container = styled.header`
   }
 `;
 
-export const Profile = styled(Link)`
+export const Profile = styled.div`
   display: flex;
   align-items: center;
 
@@ -33,21 +33,23 @@ export const Profile = styled(Link)`
     min-width: 10rem;
     max-width: 20rem;
   }
+`;
 
-  strong {
-    font-size: 1.4rem;
-    color: ${({ theme }) => theme.COLORS.WHITE};
-    align-self: flex-end;
-  }
+export const Name = styled(Link)`
+  font-size: 1.4rem;
+  color: ${({ theme }) => theme.COLORS.WHITE};
+  align-self: flex-end;
+`;
 
-  span {
-    font-size: 1.4rem;
-    color: ${({ theme }) => theme.COLORS.GRAY_TEXT};
-  }
-
+export const Picture = styled(Link)`
   > img {
     width: 6.4rem;
     height: 6.4rem;
     border-radius: 50%;
   }
+`;
+
+export const SignOut = styled.a`
+  font-size: 1.4rem;
+  color: ${({ theme }) => theme.COLORS.GRAY_TEXT};
 `;

@@ -5,9 +5,29 @@ import { Movie } from "../../components/Movie";
 
 import { FiPlus } from "react-icons/fi";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { api } from "../../services/api";
 
 export function Home() {
+  const [search, setSearch] = useState("");
+  const [movies, setMovies] = useState([]);
+
+  const navigate = useNavigate();
+
+  function handlePreview(id) {
+    navigate(`/preview/${id}`);
+  }
+
+  useEffect(() => {
+    async function fetchMovies() {
+      const response = await api.get(`/movies?title=${search}`);
+      setMovies(response.data);
+    }
+
+    fetchMovies();
+  }, [search]);
+
   return (
     <Container>
       <Header />
@@ -19,19 +39,13 @@ export function Home() {
         </Link>
       </Title>
       <MovieList>
-        <Movie
-          data={{
-            title: "Interestellar",
-            score: 8,
-            summary:
-              "Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto está assombrado por um fantasma que tenta se...",
-            tags: [
-              { id: 1, name: "Ficção Científica" },
-              { id: 2, name: "Drama" },
-              { id: 3, name: "Família" },
-            ],
-          }}
-        />
+        {movies.map((movie) => (
+          <Movie
+            key={String(movie.id)}
+            data={movie}
+            onClick={() => handlePreview(movie.id)}
+          />
+        ))}
       </MovieList>
     </Container>
   );
