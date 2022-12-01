@@ -20,7 +20,7 @@ export function SignUp() {
       return alert("Preencha todos os campos!");
     }
 
-    fetch(`http://localhost:3333/users`, {
+    fetch(`https://nodemovies-api.onrender.com/users`, {
       method: "POST",
       headers: {
         Accept: "application/json",
